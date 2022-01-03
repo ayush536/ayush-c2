@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #product{
+        display: grid;
+        grid-template-columns: repeat(4, 25%);
+        margin: 5%;
+        grid-gap: 15px;
+    }
+    img{
+        width: 40%;
+    }
+</style>
+<body>
+    <a href="cart.html" id="count" style="margin-left: 90%; margin-top: 50px; font-size: xx-large;font-weight: bolder;">cart</a>
+    <div id="product"></div>
+</body>
+</html>
+
+<script>
+    
+    let url = "https://www.themealdb.com/api/json/v1/1/search.php?f=a";
+    let product_div = document.getElementById("product");
+
+    async function getProducts(){
+      try{
+        let res = await fetch(url);
+        let data = await res.json();
+        var meals = data.meals 
+        console.log("data:", data);
+        showMeals(meals)
+    }
+    catch (err){
+        console.log("err:",err)
+    }
+}
+    getProducts();
+
+    function showMeals(meals){
+        meals.map(function(elem){
+
+            let div = document.createElement("div")
+            let img = document.createElement("img")
+            img.src = elem.strMealThumb
+
+            var name = document.createElement("p")
+            name.textContent = elem.strMeal
+
+            var price = document.createElement("p")
+            price.textContent = "150 INR"
+
+            var btn = document.createElement("button")
+            btn.textContent = "Add to cart"
+
+            div.append(img,name, price,btn)
+            product_div.append(div)
+        });
+
+        document.querySelector("button").addEventListener("click", myfun)
+
+        //arr1 = []
+        function myfun(){
+            alert("sucessfully added to your cart")
+            window.location.href = "cart.html"
+        }
+        //document.getElementById('count').textContent=cart.length
+    }
+
+</script>

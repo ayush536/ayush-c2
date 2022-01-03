@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            border: 5px solid red;
+            width: 400px;
+            height: 350px;
+            margin: auto;
+            margin-top: 100px;
+        }
+        #head, #namee, #passs{
+            border: 1px solid transparent;
+            width: 100%;
+            height: 22%;
+            margin-top: 4%;
+            text-align: center;
+        }
+        #email, #pass{
+            height: 90%;
+            width: 90%;
+            font-size: larger;
+        }
+        #bt{
+            padding: 15px;
+            margin-left: 50px;
+            margin-top: 5px;
+            font-size: larger;
+            font-weight: bolder;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="head">
+            <h1>Sign in</h1>
+        </div>
+        <div id="namee">
+            <input type="text" id="email" placeholder="Enter Email">
+        </div>
+        <div id="passs">
+            <input type="password" id="pass" placeholder="Enter password">
+            <button onclick="log()" id="bt">Sign in</button>
+            <a href="signup.html" style="margin-left: 20px;">New suer? register yourself first</a>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    let redisterUser = JSON.parse(localStorage.getItem("userDatabase"))
+
+    function log(){
+        let email = document.getElementById('email').value;
+        let pass = document.getElementById('pass').value;
+
+        for(let i=0; i<redisterUser.length; i++){
+            if(redisterUser[i].emailAdd===email && redisterUser[i].password===pass){
+                alert("welcome to our family")
+                window.location.href ="menu.html"
+            }
+        }
+    }
+</script>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            border: 5px solid black;
+            width: 400px;
+            height: 500px;
+            margin: auto;
+            margin-top: 90px;
+        }
+        .box{
+            border: 1px solid transparent;
+            width: 90%;
+            margin-left: 4%;
+            margin-right: 4%;
+            height: 15%;
+            margin-top: 2%;
+            text-align: center;
+        }
+        .inp{
+            width: 90%;
+            height: 90%;
+            text-align: center;
+            font-size: larger;
+        }
+        #btn{
+            padding: 20px;
+            margin-top: 8px;
+            margin-left: 90px;
+            font-size: larger;
+            border-radius: 10px;
+        }
+        #name, #email, #pass{
+            width: 90%;
+            height: 90%;
+            text-align: center;
+            font-size: larger;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="box">
+            <h1>Sign up</h1>
+        </div>
+        <div class="box">
+            <input type="text" placeholder="Enter Username" id="name">
+        </div>
+        <div class="box">
+            <input type="text" placeholder="Enter E-Mail" id="email">
+        </div>
+        <div class="box">
+            <input type="password" placeholder="Enter your password" id="pass">
+        </div>
+        <div class="box">
+            <input type="number" placeholder="Enter Mobile number" class="inp">
+        </div>
+        <button id="btn" onclick="submit()">Signup</button>
+        <a href="login.html" style="margin-left: 30px;">Move to login page</a>
+    </div>
+</body>
+</html>
+
+<script>
+    let userData = JSON.parse(localStorage.getItem("userDatabase"))||[]
+
+    function submit(){
+        let email = document.getElementById('email').value;
+        let name = document.getElementById('name').value;
+        let pass = document.getElementById('pass').value;
+
+        var database = {
+            emailAdd: email,
+            password: pass,
+            username: name,
+        }
+        userData.push(database);
+        localStorage.setItem("userDatabase", JSON.stringify(userData));
+        alert(`${name}you are sucessfully signed up`)
+        window.location.href = "login.html"
+    }
+</script>
